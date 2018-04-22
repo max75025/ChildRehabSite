@@ -1,0 +1,15 @@
+.callback {
+  padding: 50px 0; }
+
+.field {
+  display: table;
+  width: 50%;
+  margin: 10px auto;
+  padding: 15px; }
+
+.bttn {
+  display: table;
+  margin: 0 auto; }
+
+.title {
+  text-align: center; }

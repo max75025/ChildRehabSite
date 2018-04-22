@@ -51,7 +51,15 @@ type PhotosDataModel struct{
 
 type TeamDataModel struct{
 	Meta 		BasicPageData
-	OurTeam 	[]Article
+	OurTeam 	[]Specialist
+}
+
+type Specialist struct{
+	Position string
+	Img string
+	Name string
+	Discription string
+	Link string
 }
 
 
@@ -59,7 +67,7 @@ type ContactsDataModel struct{
 	Meta 			BasicPageData
 	PhoneNumbers 	[]string
 	Emails 			[]string
-	Address 		[]string
+	Address 		string
 	Social			SocialLinks
 
 }
@@ -75,7 +83,7 @@ type SocialLinks struct{
 
 type DocumentsDataModel struct {
 	Meta BasicPageData
-	Documents Document
+	Documents []Document
 }
 
 type Document struct{

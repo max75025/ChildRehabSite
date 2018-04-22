@@ -1,9 +1,11 @@
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/static/main.css" type="text/css">
+
 </head>
 
 <body>
@@ -36,42 +38,29 @@
     </div>
 </nav>
 <div class="text-center d-flex align-items-center h-100 " style="background-image: url('/static/bg.png');">
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-lg-12 mt-5">
-                <h1 class="display-5 text-white">Центр соціально-психологічної реабілітації дітей</h1>
-                <p class="lead text-white">Одеської міської ради Одеської області</p>
-                <a href="#history" class="btn btn-lg btn-success">Узнать о нашей истории</a>
-            </div>
+<div class="container ">
+    <div class="row">
+        <div class="col-md-12 text-center align-self-center">
+            <h3 class="text-uppercase text-black mt-5">Детский дом две сосны</h3>
+            <p> <strong>Company name, Inc.</strong></p>
+            <p>795 Folsom Ave, Suite 600</p>
+            <p>San Francisco, CA 94107</p>
+            <p>(123) 456-7890 </p>
+            <p>childhome@child.com</p>
         </div>
 
-        <a href="#history"><img src="/static/Odessa_logo.svg" height="196" class="mt-5 jump"></a>
     </div>
 </div>
-<h1 class="text-uppercase py-4 text-info text-success text-center" id="history">Наша история</h1>
-<div class="  section">
-    <div class="container">
-        {{range .History}}
-        <div class="row">
-            <div class="col-md-12"><h2 class="text-success text-center">{{.Title}}</h2></div>
-            <div class="col-md-12">
-                <img src="{{.Img}}" class="img-fluid float-right">
-                <p class="lead">{{.Body}} </p>
-
-            </div>
-            <div class="col-md-6">
-
-            </div>
-        </div>
-        {{end}}
-    </div>
-
 </div>
-<div class="py-0 text-center">
-    <p class = "">Центр соціально-психологічної реабілітації дітей</p>
+<div class="map" id="map" style="width:100%;height:450px;"></div>
+<div class="text-center bg-success">
+    <p class = "mb-0">Центр соціально-психологічної реабілітації дітей</p>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+    <script src="/static/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyBllgEoWZi13ZG-R14hvugQrZimvOna7hw&callback=initMap"></script>
+</div>
 </body>
 </html>

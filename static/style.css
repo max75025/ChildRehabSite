@@ -1,0 +1,121 @@
+.mission {
+  padding: 50px 0; }
+
+.block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .block__bttn {
+    display: inline-block; }
+
+.block-l {
+  width: 50%; }
+
+.block-r {
+  width: 50%; }
+
+.bttn .header_link {
+  display: table;
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 18px;
+  font-family: sans-serif;
+  border: 1px solid transparent;
+  color: #fff;
+  background-color: #5cb85b;
+  -webkit-transition: 0.5s ease;
+  -o-transition: 0.5s ease;
+  transition: 0.5s ease; }
+  .bttn .header_link:hover {
+    opacity: 0.8; }
+
+.block-r.mission-r {
+  margin-left: 50px; }
+
+.title {
+  display: block; }
+  .title_text {
+    margin: 0;
+    font-size: 32px;
+    font-family: sans-serif;
+    color: #5cb85c; }
+  .title_subtext {
+    margin: 0.5em 0;
+    font-size: 24px;
+    font-family: sans-serif;
+    color: #333; }
+
+.center {
+  display: table;
+  text-align: center;
+  margin: 0 auto; }
+
+.team {
+  padding: 50px 0; }
+  .team__block {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: baseline;
+    -webkit-align-items: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    margin: 50px 0; }
+
+.team__elem {
+  width: 25%;
+  text-align: center; }
+  .team__elem_img {
+    margin: 0 auto;
+    -webkit-border-radius: 50%;
+            border-radius: 50%; }
+  .team__elem_text {
+    margin: 0.3em;
+    font-size: 28px;
+    font-family: sans-serif;
+    color: #333; }
+  .team__elem_subtext {
+    margin: 0;
+    font-size: 20px;
+    font-family: sans-serif;
+    color: #333; }
+
+.history {
+  padding: 50px 0; }
+
+.footer {
+  padding: 15px 0;
+  text-align: center;
+  background-color: #5cb85b; }
+
+.copyright {
+  margin: 0;
+  font-size: 18px;
+  font-family: sans-serif;
+  color: #fff; }
+
+@media screen and (max-width: 768px) {
+  .team__elem {
+    width: 45%;
+    margin: 10px 0; }
+  .block {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+    .block-l {
+      width: 100%; }
+    .block-r {
+      width: 100%; }
+  .block-r.mission-r {
+    margin-left: 0; }
+  .block {
+    text-align: center; }
+    .block-r {
+      margin-bottom: 35px; } }
