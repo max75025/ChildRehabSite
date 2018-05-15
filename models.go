@@ -34,14 +34,21 @@ type News struct{
 	Title 		string
 	Body 		string
 	Img 		string
-	Date 		string
+	Date 		int
 	NewsLink 	string
 }
 
 type PhotoAlbum struct{
-	Img         []string
+	ID 			int
+	Img         map[int]Photo
 	Title 		string
 	Description string
+}
+
+type Photo struct{
+	ID 			int
+	Img 		string
+	Title 		string
 }
 
 type PhotosDataModel struct{

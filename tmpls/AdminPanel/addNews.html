@@ -8,13 +8,13 @@
     <title>addNews</title>
 </head>
 <body>
-<form action="/AdminPanel/addNews" method="POST">
+<form action="/AdminPanel/addNews" method="POST" enctype="multipart/form-data">
     <p>Title</p>
-    <input type="text" name="title"><br>
+    <input type="text" name="title"><br>{{/*сделать лимит по количеству символов в названии*/}}
     <p>body</p>
     <textarea name="body" id="" cols="30" rows="10"></textarea><br>
     <p>img</p>
-    <input type="text" name="img"><br>
+    <input type="file" name="img" accept="image/*"><br>
     <input type="submit" >
 </form>
 </body>

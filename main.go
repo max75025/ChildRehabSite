@@ -27,16 +27,17 @@ func checkSiteErr(err error, w http.ResponseWriter) {
 	}
 }
 
+// upload one img and return path or ""
 
 
 func main() {
 	db, err:= sql.Open("sqlite3", "./database/db.db")
 	checkErr(err)
-
 	router := httprouter.New()
 
 	//Serve static
 	router.ServeFiles("/static/*filepath", http.Dir("static"))
+	router.ServeFiles("/newsImgs/*filepath", http.Dir("newsImgs"))
 
 
 	//Views
@@ -58,12 +59,21 @@ func main() {
 			Title:    "test Title",
 			Body:     `Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или "невозможных" слов.`,
 			Img:      "/static/750x300.png",
-			Date:     "04.04.2018",
+			Date:     11111,
 			NewsLink: "",
 		}
+		// var manyNews []News
+		// manyNews = append(manyNews, newPost, newPost)
 
 		data.AllNews = append(data.AllNews, newPost, newPost, newPost)
 		tmpl:= template.Must(template.ParseFiles("tmpls/news.html"))
+		tmpl.Execute(w,data)
+	})
+	router.GET("/news/:link", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
+		data:= new(NewsDataModel)
+		link :=  ps.ByName("link")
+		data.AllNews = append(data.AllNews, getNewsByUrlFromDB(link, db))
+		tmpl:= template.Must(template.ParseFiles("tmpls/oneNews.html"))
 		tmpl.Execute(w,data)
 	})
 
@@ -158,31 +168,61 @@ func main() {
 
 	router.GET("/AdminPanel" ,func(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 		checkLogin(w, r)
-		fmt.Fprintf(w,"hello %s", getUserName(r))
-
+		//fmt.Fprintf(w,"hello %s", getUserName(r))
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/AdminPanel.html"))
+		tmpl.Execute(w,nil)
 	})
 
 	router.GET("/AdminPanel/news", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		fmt.Fprintf(w, "admin panel news")
+		news:= new(NewsDataModel)
+		news.AllNews = getNewsFromDB(0, db)
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/news.html"))
+		tmpl.Execute(w,news)
 	})
 	router.GET("/AdminPanel/addNews", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		//checkLogin(w,r)
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/addNews.html"))
 		tmpl.Execute(w,nil)
+		//fmt.Println(time.Now().Unix())
 	})
+
 	router.POST("/AdminPanel/addNews", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		//checkLogin(w,r)
-		//fmt.Fprintf(w, "ok, you sent new news...")
-		r.ParseForm()
-		stmt, err := db.Prepare("INSERT INTO news(Title, Body, Img, Date) VALUES (?,?,?,?)")
-		checkErr(err)
-		t:= time.Now()
-		fmt.Println(t.Format("02.01.2006"))
-		 res, err:=stmt.Exec(r.Form["title"][0], r.Form["body"][0], r.Form["img"][0], "asdasd" )
-		//res, err:=stmt.Exec("test", "test", "test", "test", "test" )
-		checkErr(err)
-		fmt.Println(res)
 
+		r.ParseForm()
+		imgPath:= ""
+		r.ParseMultipartForm(32 << 20)
+		file, handler, err := r.FormFile("img")
+		if err != nil {
+			fmt.Println(err)
+		}
+		imgPath = upload(file, handler.Filename, "/newsImgs/")
+
+		err = addNewsToDB(db, imgPath, r.Form["title"][0],r.Form["body"][0] )
+		if err!=nil {
+			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+		}
+		fmt.Println("news add")
+		http.Redirect(w, r, "/AdminPanel/news", http.StatusSeeOther)
+		//fmt.Println(time.Unix(t,0).Format("02.01.2006"))
+
+	})
+
+	router.GET("/AdminPanel/deleteNews/:link", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		//checkLogin(w,r)
+		_, err:= db.Exec("Delete FROM news WHERE News_link = '" + ps.ByName("link") + "'")
+		//fmt.Fprintf(w, "новость удалена")
+		http.Redirect(w, r, "/AdminPanel/news", http.StatusSeeOther)
+		checkErr(err)
+
+	})
+
+
+	router.GET("/AdminPanel/Albums", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		//checkLogin(w,r)
+
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/PhotoAlbums.html"))
+		tmpl.Execute(w,nil)
 	})
 
 
@@ -236,6 +276,7 @@ func main() {
 
 	router.NotFound = http.HandlerFunc(func(w http.ResponseWriter, r* http.Request) {
 		fmt.Fprintf(w,"answer: 42")
+
 	})
 
 
@@ -249,7 +290,6 @@ func main() {
 	}
 	fmt.Println("server listen and serve...")
 	fmt.Println(server.ListenAndServe())
-
 
 	db.Close()
 
