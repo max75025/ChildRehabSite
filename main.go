@@ -11,6 +11,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 	"encoding/json"
 
+	"strconv"
 )
 
 
@@ -38,6 +39,7 @@ func main() {
 	//Serve static
 	router.ServeFiles("/static/*filepath", http.Dir("static"))
 	router.ServeFiles("/newsImgs/*filepath", http.Dir("newsImgs"))
+	router.ServeFiles("/photo/*filepath", http.Dir("photo"))
 
 
 	//Views
@@ -45,7 +47,7 @@ func main() {
 		data := new(IndexDataModel)
 		newArticle := Article{Title: "Тест", Img: "/static/none.png", Body: `Психолог`}
 		data.OurTeam = append(data.OurTeam, newArticle, newArticle, newArticle, newArticle)
-		newArticle = Article{Title: "Наша миссия", Img: "/static/hands.png", Body: `Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или "невозможных" слов.`}
+		newArticle = Article{Title: "Наша миссия", Img: "/static/bg.png", Body: `Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или "невозможных" слов.`}
 		data.OurMission = newArticle
 		newArticle = Article{Title: "Наша история", Img: "/static/foot.jpg", Body: `Многие думают, что Lorem Ipsum - но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги "de Finibus Bonorum et Malorum" ("О пределах добра и зла"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, "Lorem ipsum dolor sit amet..", происходит от одной из строк в разделе 1.10.32`}
 		data.OurHistory = newArticle
@@ -55,17 +57,11 @@ func main() {
 
 	router.GET("/news", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 		data:= new(NewsDataModel)
-		newPost:= News{
-			Title:    "test Title",
-			Body:     `Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или "невозможных" слов.`,
-			Img:      "/static/750x300.png",
-			Date:     11111,
-			NewsLink: "",
-		}
+
 		// var manyNews []News
 		// manyNews = append(manyNews, newPost, newPost)
 
-		data.AllNews = append(data.AllNews, newPost, newPost, newPost)
+		data.AllNews = cachedNews
 		tmpl:= template.Must(template.ParseFiles("tmpls/news.html"))
 		tmpl.Execute(w,data)
 	})
@@ -77,9 +73,26 @@ func main() {
 		tmpl.Execute(w,data)
 	})
 
-	router.GET("/photo", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		fmt.Fprintf(w," our photo")
+	router.GET("/albums", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
+		data:= new(PhotosDataModel)
+
+		data.Albums = cachedAlbums
+		tmpl:= template.Must(template.ParseFiles("tmpls/Albums.html"))
+		tmpl.Execute(w,data)
 	})
+	router.GET("/albums/:id", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+
+		id,err:=strconv.Atoi(ps.ByName("id"))
+		checkErr(err)
+		album,err:= getAlbumById(id)
+		if(err!=nil){
+			http.Redirect(w,r,"/404", http.StatusSeeOther)
+		}
+
+		tmpl:= template.Must(template.ParseFiles("tmpls/photos.html"))
+		tmpl.Execute(w,album)
+	})
+
 	router.GET("/history", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		data := new(OurHistoryDataModel)
 		article1:=Article{
@@ -220,15 +233,90 @@ func main() {
 
 	router.GET("/AdminPanel/Albums", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		//checkLogin(w,r)
-
+		albums := cachedAlbums
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/PhotoAlbums.html"))
+		tmpl.Execute(w,albums)
+	})
+
+	router.GET("/AdminPanel/addAlbums", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		//checkLogin(w,r)
+
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/addAlbums.html"))
 		tmpl.Execute(w,nil)
+	})
+	router.POST("/AdminPanel/Albums/add", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		//checkLogin(w,r)
+		r.ParseForm()
+		//err = addAlbumToDB(db, "test","test" )
+		err = addAlbumToDB(db, r.Form["title"][0],r.Form["description"][0] )
+		if err!=nil {
+			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+		}
+		fmt.Println("album add")
+		refreshCache(db)
+		http.Redirect(w, r, "/AdminPanel/Albums", http.StatusSeeOther)
+	})
+	router.GET("/AdminPanel/Album/:id/delete",func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		//checkLogin(w,r)
+		i,_:=strconv.Atoi(ps.ByName("id"))
+		err = deleteAlbumFromDB(db, i)
+		checkErr(err)
+		fmt.Println("album delete")
+		refreshCache(db)
+		http.Redirect(w, r, "/AdminPanel/Albums", http.StatusSeeOther)
+	})
+
+	router.GET("/AdminPanel/Albums/:id", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+
+		id,err:=strconv.Atoi(ps.ByName("id"))
+		checkErr(err)
+        album,err:= getAlbumById(id)
+        if(err!=nil){
+        	http.Redirect(w,r,"/404", http.StatusSeeOther)
+		}
+
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/photos.html"))
+		tmpl.Execute(w,album)
+	})
+	router.GET("/AdminPanel/Albums/:id/addPhoto", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+
+
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/addPhoto.html"))
+		tmpl.Execute(w,ps.ByName("id"))
+	})
+
+	router.POST("/AdminPanel/Albums/addPhoto/:id", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		r.ParseForm()
+		imgPath:= ""
+		r.ParseMultipartForm(32 << 20)
+		file, handler, err := r.FormFile("img")
+		if err != nil {
+			fmt.Println(err)
+		}
+		imgPath = upload(file, handler.Filename, "/photo/")
+		err = addPhotoFromDB(db,r.Form["title"][0],imgPath, ps.ByName("id"))
+		if err!=nil {
+			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+		}
+		fmt.Println("add photo")
+		refreshCache(db)
+		http.Redirect(w, r, "/AdminPanel/Albums/"+ps.ByName("id"), http.StatusSeeOther)
+	})
+
+	router.GET("/AdminPanel/deletePhoto/:idImg/:idAlbum", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		idImg,_:= strconv.Atoi(ps.ByName("idImg"))
+		deletePhotoFromDB(db, idImg)
+		refreshCache(db)
+		http.Redirect(w, r, "/AdminPanel/Albums/"+ps.ByName("idAlbum"), http.StatusSeeOther)
 	})
 
 
 
 
-    /*some test */
+
+
+
+	/*some test */
 	router.GET("/db", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		rows, err:= db.Query("SELECT * FROM news")
 		checkErr(err)
@@ -288,6 +376,8 @@ func main() {
 		WriteTimeout: time.Duration(30) * time.Second,
 		Handler:      router,
 	}
+	refreshCache(db)
+	//fmt.Println(cachedAlbums)
 	fmt.Println("server listen and serve...")
 	fmt.Println(server.ListenAndServe())
 

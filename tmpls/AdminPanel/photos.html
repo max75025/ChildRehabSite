@@ -14,7 +14,16 @@
         .mosaicflow__column { float:left; }
         .mosaicflow__item img { display:block; width:100%; height:auto; padding: 4px; background-color: #fff;  }
         .mosaicflow__item img:hover { opacity: 0.6; filter: alpha(opacity=60); }
-
+        .mosaicflow__item{
+            position: relative;
+        }
+        .mosaicflow__item .delete{
+            position: absolute;
+            top: 4px;
+            right: 8px;
+            z-index: 2;
+            color:red;
+        }
     </style>
 </head>
 <body>
@@ -22,26 +31,14 @@
     <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="  collapse navbar-collapse text-center justify-content-center  " id="navbar2SupportedContent">
         <ul class="navbar-nav ">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Главная</a>
+            <li class="nav-item ">
+                <a class="nav-link" href="/AdminPanel">главная</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="/news">Новости</a>
+                <a class="nav-link" href="/AdminPanel/news">Новости</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/albums">Фото</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/history">История</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/team">Специалисты</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/doc">Документация</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/contacts">Контакты</a>
+                <a class="nav-link" href="/AdminPanel/Albums">Фото</a>
             </li>
         </ul>
     </div>
@@ -50,12 +47,15 @@
     <h1 class=" text-center my-4">{{.Title}}</h1>
     <h5 class="text-center">{{.Description}}</h5>
     <div class="clearfix mosaicflow">
-    {{range .Img}}
+        {{range .Img}}
         <div class="mosaicflow__item">
+            <a class="delete" href="/AdminPanel/deletePhoto/{{.ID}}/{{.IDAlbum}}">&#10006;</a>
             <a class="fancyimage" data-fancybox-group="group" href="{{.Img}}"><img  src="{{.Img}}" alt="" title="{{.Title}}"></a>
         </div>
-    {{end}}
-
+        {{end}}
+            <div class="mosaicflow__item">
+                <a href="/AdminPanel/Albums/{{.ID}}/addPhoto"><img width="250" height="250" src="/static/addPhoto.jpg" alt=""></a>
+            </div>
     </div>
 </div>
 

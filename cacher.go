@@ -2,45 +2,47 @@ package main
 
 import (
 	"database/sql"
+	"errors"
 
-	"encoding/json"
-	"fmt"
+	"time"
+	"strconv"
+
 )
-
 
 
 var cachedAlbums 	[]PhotoAlbum
 var cachedNews 		[]News
 
 
+func refreshCache(db *sql.DB){
+	cacheAlbums(db)
+	cacheNews(db)
+}
+
+
 func cacheAlbums(db *sql.DB)  {
-	var allAlbum []PhotoAlbum
-	var album PhotoAlbum
+	 Albums := getAlbumsFromDB(db)
+	allPhotos:=getPhotosFromDB(db)
 
-	var id int
-	var path string
-	var title string
-	var albumStr string
 
-	currentAlbum:= ""
-	rows, err := db.Query("SELECT * FROM photo GROUP BY album" )
-	checkErr(err)
-	for rows.Next() {
-		err = rows.Scan(&id, &path, &title, &albumStr)
-		photo := Photo{
-			ID:    id,
-			Img:   path,
-			Title: title,
-		}
-		if(currentAlbum!=albumStr){
+	for i,k:= range Albums {
+		var photosForAlbum []Photo
+		for _,t := range allPhotos{
 
+			if k.ID == t.IDAlbum {
+				photosForAlbum = append(photosForAlbum, t)
+			}
 		}
 
-		allAlbum = append(allAlbum, album)
+		Albums[i].Img = photosForAlbum
+		if len(photosForAlbum)!=0{
+			Albums[i].Cover = photosForAlbum[0].Img
+		}else{
+			Albums[i].Cover = "http://placehold.it/400x300"
+		}
+
 	}
-	checkErr(err)
-	rows.Close()
-	fmt.Println("albums cashed")
+	cachedAlbums = Albums
 }
 
 func cacheNews(db *sql.DB){
@@ -55,11 +57,26 @@ func cacheNews(db *sql.DB){
 	for rows.Next() {
 		err = rows.Scan(&news.Title, &news.Body, &news.Img, &news.Date, &news.NewsLink)
 		checkErr(err)
+		i,_:=strconv.ParseInt(news.Date, 10, 64)
+		t:=time.Unix(i,0)
+		convTime:= t.Format("02.01.2006")
+		news.Date = convTime
 		allNews = append(allNews, news)
 	}
 	rows.Close()
 	cachedNews = allNews
 }
+
+func getAlbumById(id int)(PhotoAlbum,error){
+	for _,k:= range cachedAlbums{
+		if k.ID==id{
+			return k,nil
+		}
+	}
+	return PhotoAlbum{},errors.New("not found")
+}
+
+
 
 /*func testInputPhotoToDB(db *sql.DB){
 	stmt, err := db.Prepare("INSERT INTO photo(path,title) VALUES (?,?)")

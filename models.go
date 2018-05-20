@@ -1,7 +1,6 @@
 package main
 
 
-
 type BasicPageData struct {
 	Description string
 	Keywords    string
@@ -34,21 +33,23 @@ type News struct{
 	Title 		string
 	Body 		string
 	Img 		string
-	Date 		int
+	Date 		string
 	NewsLink 	string
 }
 
 type PhotoAlbum struct{
-	ID 			int
-	Img         map[int]Photo
+	ID			int
+	Img         []Photo
 	Title 		string
 	Description string
+	Cover 		string
 }
 
 type Photo struct{
-	ID 			int
+	ID			int
 	Img 		string
 	Title 		string
+	IDAlbum		int
 }
 
 type PhotosDataModel struct{
