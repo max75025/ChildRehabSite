@@ -1,22 +1,13 @@
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Фото альбомы</title>
-    <link rel="stylesheet" href="/static/main.css" type="text/css">
-    <link rel="stylesheet" href="/static/square-img.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" type="text/css">
-    <style>
-        .mosaicflow__item { padding:3px; }
-        .mosaicflow__column { float:left; }
-        .mosaicflow__item img { display:block; width:100%; height:auto; padding: 4px; background-color: #fff;  }
-        .mosaicflow__item img:hover { opacity: 0.6; filter: alpha(opacity=60); }
+<html>
 
-    </style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/main.css" type="text/css">
+
 </head>
+
 <body>
 <nav class="navbar navbar-expand-md text-center navbar-inverse bg-success">
     <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
@@ -46,24 +37,30 @@
         </ul>
     </div>
 </nav>
-<div class="container">
-    <h1 class=" text-center my-4">{{.Title}}</h1>
-    <h5 class="text-center">{{.Description}}</h5>
-    <div class="clearfix mosaicflow">
-    {{range .Img}}
-        <div class="mosaicflow__item">
-            <a class="fancyimage" data-fancybox-group="group" href="{{.Img}}"><img  src="{{.Img}}" alt="" title="{{.Title}}"></a>
+<div class="text-center d-flex align-items-center h-100 " style="background-image: url('/static/bg.png');">
+<div class="container ">
+    <div class="row">
+        <div class="col-md-12 text-center align-self-center">
+            <h3 class="text-uppercase text-black mt-5">Детский дом две сосны</h3>
+            <p> <strong>Company name, Inc.</strong></p>
+            <p>795 Folsom Ave, Suite 600</p>
+            <p>San Francisco, CA 94107</p>
+            <p>(123) 456-7890 </p>
+            <p>childhome@child.com</p>
         </div>
-    {{end}}
 
     </div>
 </div>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</div>
+<div class="map" id="map" style="width:100%;height:450px;"></div>
+<div class="text-center bg-success">
+    <p class = "mb-0">Центр соціально-психологічної реабілітації дітей</p>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
-
-<script src="/static/js/jquery.mosaicflow.min.js"></script>
-<script type="text/javascript"> $(document).ready(function() { $("a.fancyimage").fancybox(); }); </script>
+<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+    <script src="/static/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?&key=AIzaSyBllgEoWZi13ZG-R14hvugQrZimvOna7hw&callback=initMap"></script>
+</div>
 </body>
 </html>

@@ -1,0 +1,131 @@
+{{/*
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add album</title>
+</head>
+<body>
+<form action="/AdminPanel/Albums/add" method="POST" >
+    <p>Title</p>
+    <input type="text" name="title"><br>*/}}
+{{/*сделать лимит по количеству символов в названии*/}}{{/*
+
+    <p>body</p>
+    <textarea name="description" id="" cols="30" rows="10"></textarea><br>
+    <input type="submit" >
+</form>
+</body>
+</html>*/}}
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>добавить альбом</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" />
+    <style>
+        .form-width {max-width: 25rem;}
+        .has-float-label {
+            position: relative; }
+        .has-float-label label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: text;
+            font-size: 75%;
+            opacity: 1;
+            -webkit-transition: all .2s;
+            transition: all .2s;
+            top: -.5em;
+            left: 0.75rem;
+            z-index: 3;
+            line-height: 1;
+            padding: 0 1px; }
+        .has-float-label label::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            background: white;
+            height: 2px;
+            top: 50%;
+            left: -.2em;
+            right: -.2em;
+            z-index: -1; }
+        .has-float-label .form-control::-webkit-input-placeholder {
+            opacity: 1;
+            -webkit-transition: all .2s;
+            transition: all .2s; }
+        .has-float-label .form-control:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+            opacity: 0; }
+        .has-float-label .form-control:placeholder-shown:not(:focus) + label {
+            font-size: 150%;
+            opacity: .5;
+            top: .3em; }
+
+        .input-group .has-float-label {
+            display: table-cell; }
+        .input-group .has-float-label .form-control {
+            border-radius: 0.25rem; }
+        .input-group .has-float-label:not(:last-child) .form-control {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0; }
+        .input-group .has-float-label:not(:first-child) .form-control {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            margin-left: -1px; }
+
+        .flexbox-wrapper {
+            display: -webkit-flex;
+            display: -ms-flex;
+            display: flex;
+            -webkit-align-items: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            justify-content: center;
+            width: 100vw;
+            height: 100vh;
+            background-image: url("/static/bg.png");
+            background-size: cover;
+        }
+
+        .flexbox-wrapper > form {
+            width: 50%;
+
+        }
+        input{
+            border:1px solid;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="flexbox-wrapper">
+    <form class=" p-3 card card-block  bg-faded form-width"  action="/AdminPanel/Albums/add" method="POST" >
+        <legend align="center" class="m-b-1 ">Добавление альбома</legend>
+        <div class=" form-group has-float-label ">
+            <input class="form-control" name="title" id="title"  type="text" placeholder="название" maxlength="15" required/>
+            <label for="title">название</label>
+        </div>
+        <div class="form-group has-float-label">
+            <textarea  class="form-control" name="description" id="" cols="48" rows="15" placeholder="описание"></textarea>
+        </div>
+        <div class="text-xs-center">
+            <button class="btn btn-block btn-success" type="submit">добавить</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

@@ -5,7 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/static/main.css" type="text/css">
-
+    <style>
+        p {
+            white-space: pre-wrap;       /* css-3 */
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            width: 99%;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,7 +46,7 @@
         </ul>
     </div>
 </nav>
-{{/*<div class="text-center d-flex align-items-center h-100 " style="background-image: url('/static/bg.png');">
+<div class="text-center d-flex align-items-center h-100 " style="background-image: url('/static/bg.png');">
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-12 mt-5">
@@ -48,54 +57,40 @@
         </div>
         <a href="#news"><img src="/static/Odessa_logo.svg" height="196" class="mt-5 jump"></a>
     </div>
-</div>*/}}
-  <div class="bg-faded py-0 text-center">
-    <h2 class="text-uppercase py-5 text-info styleFontHeadNews" id="news">Свежие новости</h2>
+</div>
+<div class="bg-faded ">
+
     <div class="container-fluid">
 
-      <div class="row ">
-        <div class="col-md-8 ">
-          <div id="app">
-        {{range .AllNews}}
-            <div v-for="post in posts">
-              <div class="text-left p-5">
-                <p class="styleFontNewsDate">{{.Date}}</p>
-                <img class="img-fluid" src="{{.Img}}">
-                <h3 class="styleFontHeadNews text-uppercase my-5">{{ .Title }}</h3>
-                <p class="styleFontNews">{{printf "%.300s ..." .Body }}</p>
-                <a href="/news/{{.NewsLink}}" class="btn btn-success">Читать полностью</a>
-              </div>
+        <div class="row ">
+            <div class="col-10 m-auto ">
+                {{range .AllNews}}
+                    <div v-for="post in posts">
+                        <p class="text-left p-5">
+                            <p class="styleFontNewsDate">{{.Date}}</p>
+                            <div class="text-center">
+                                <h3 id="news" class="styleFontHeadNews text-uppercase my-2">{{ .Title }}</h3>
+                                <img class=" my-3 img-fluid " src="{{.Img}}">
+                            </div>
+                            <p class="styleFontNews">{{.Body }}</p>
+                        </div>
+                    </div>
+                {{end}}
             </div>
-            {{end}}
-          </div>
+
+
+
+
         </div>
-
-
-
-          <div class="col-md-4">
-            <div id="app1">
-            {{range .AllNews}}
-              <div v-for="post in posts">
-                <div class="p-5 text-right">
-                  <img class="img-fluid " src="http://placehold.it/700x400">
-                  <h3 class="styleFontHeadNews text-uppercase my-5 text-left">{{.Title}}</h3>
-                  <p class="styleFontNews text-left"> Alias aliquid, amet, asperiores deleniti dignissimos esse eum in minima, molestias nemo optio quos recusandae suscipit vero.</p>
-                  <a href="" class="btn btn-success">Читать все</a>
-                </div>
-              </div>
-            {{end}}
-            </div>
-          </div>
-      </div>
     </div>
 
-    </div>
-  </div>
-  {{/*<script src="app.js"></script>
+</div>
+</div>
+{{/*<script src="app.js"></script>
   <script src="app1.js"></script>*/}}
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-  <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
 </body>
 
 </html>

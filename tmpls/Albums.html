@@ -4,8 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/static/main.css" type="text/css">
+    <link rel="stylesheet" href="/static/main.css">
+    <style>
+        .img-box{
+            height:200px;
+            overflow: hidden;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
 
+        }
+        .container-img-box{
+            position: relative;
+        }
+
+        .container-img-box a.delete{
+            position: absolute;
+            z-index: 2;
+            top: 2px;
+            right:20px;
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,59 +63,35 @@
             <div class="col-lg-12 mt-5">
                 <h1 class="display-5 text-white">Центр соціально-психологічної реабілітації дітей</h1>
                 <p class="lead text-white">Одеської міської ради Одеської області</p>
-                <a href="#news" class="btn btn-lg btn-success">Узнать последние новости</a>
+                <a href="#albums" class="btn btn-lg btn-success">посмотреть альбомы с фотографиями</a>
             </div>
         </div>
-        <a href="#news"><img src="/static/Odessa_logo.svg" height="196" class="mt-5 jump"></a>
+        <a href="#albums"><img src="/static/Odessa_logo.svg" height="196" class="mt-5 jump"></a>
     </div>
 </div>*/}}
-  <div class="bg-faded py-0 text-center">
-    <h2 class="text-uppercase py-5 text-info styleFontHeadNews" id="news">Свежие новости</h2>
-    <div class="container-fluid">
-
-      <div class="row ">
-        <div class="col-md-8 ">
-          <div id="app">
-        {{range .AllNews}}
-            <div v-for="post in posts">
-              <div class="text-left p-5">
-                <p class="styleFontNewsDate">{{.Date}}</p>
-                <img class="img-fluid" src="{{.Img}}">
-                <h3 class="styleFontHeadNews text-uppercase my-5">{{ .Title }}</h3>
-                <p class="styleFontNews">{{printf "%.300s ..." .Body }}</p>
-                <a href="/news/{{.NewsLink}}" class="btn btn-success">Читать полностью</a>
-              </div>
+<div class="py-5 text-center">
+    <h2 id="albums" class="text-success">Наши альбомы</h2>
+    <div class="container ">
+        <div class="row justify-content-around">
+        {{range .Albums}}
+            <div class=" container-img-box col-lg-3 col-md-6 col-sm-12  m-auto">
+                <a href="/albums/{{.ID}}">
+                    <div class="img-box" style=" background-image:url('{{.Cover}}');">
+                    </div>
+                    <h3 class="mt-3">{{.Title}}</h3></a>
             </div>
-            {{end}}
-          </div>
+
+        {{end}}
+
         </div>
-
-
-
-          <div class="col-md-4">
-            <div id="app1">
-            {{range .AllNews}}
-              <div v-for="post in posts">
-                <div class="p-5 text-right">
-                  <img class="img-fluid " src="http://placehold.it/700x400">
-                  <h3 class="styleFontHeadNews text-uppercase my-5 text-left">{{.Title}}</h3>
-                  <p class="styleFontNews text-left"> Alias aliquid, amet, asperiores deleniti dignissimos esse eum in minima, molestias nemo optio quos recusandae suscipit vero.</p>
-                  <a href="" class="btn btn-success">Читать все</a>
-                </div>
-              </div>
-            {{end}}
-            </div>
-          </div>
-      </div>
     </div>
-
-    </div>
-  </div>
-  {{/*<script src="app.js"></script>
-  <script src="app1.js"></script>*/}}
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-  <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+</div>
+<footer class="">
+    <p class="text-center m-0">Центр соціально-психологічної реабілітації дітей</p>
+</footer>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
 </body>
 
 </html>
