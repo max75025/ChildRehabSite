@@ -26,10 +26,11 @@
           <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/main.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
-                  <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                <state relative-caret-position="322">
+                  <caret line="302" column="8" lean-forward="false" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="8" />
                   <folding>
-                    <marker date="1529344967300" expanded="true" signature="14202:14220" ph="SELECT * FRO... news" />
+                    <element signature="e#49#217#0" expanded="true" />
+                    <marker date="1529346070534" expanded="true" signature="14870:14888" ph="SELECT * FRO... news" />
                   </folding>
                 </state>
               </provider>
@@ -103,22 +104,22 @@
           <file leaf-file-name="DBfunc.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/DBfunc.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
-                  <caret line="132" column="50" lean-forward="false" selection-start-line="132" selection-start-column="50" selection-end-line="132" selection-end-column="50" />
+                <state relative-caret-position="423">
+                  <caret line="134" column="123" lean-forward="false" selection-start-line="134" selection-start-column="123" selection-end-line="134" selection-end-column="123" />
                   <folding>
                     <element signature="e#14#134#0" expanded="true" />
-                    <marker date="1529342297223" expanded="true" signature="787:856" ph="SELECT Title... " />
-                    <marker date="1529342297223" expanded="true" signature="1261:1331" ph="INSERT INTO news... " />
-                    <marker date="1529342297223" expanded="true" signature="1586:1622" ph="DELETE FROM news... " />
-                    <marker date="1529342297223" expanded="true" signature="1794:1845" ph="INSERT INTO Albums... " />
-                    <marker date="1529342297223" expanded="true" signature="2014:2043" ph="DELETE FROM Albums... " />
-                    <marker date="1529342297223" expanded="true" signature="2250:2290" ph="SELECT ID, T... Albums" />
-                    <marker date="1529342297223" expanded="true" signature="2640:2695" ph="INSERT INTO photo... " />
-                    <marker date="1529342297223" expanded="true" signature="2863:2891" ph="DELETE FROM photo... " />
-                    <marker date="1529342297223" expanded="true" signature="3049:3086" ph="SELECT img, " />
-                    <marker date="1529342297223" expanded="true" signature="3049:3105" ph="SELECT img, photo" />
-                    <marker date="1529342297223" expanded="true" signature="3296:3334" ph="SELECT ID, T... Albums" />
-                    <marker date="1529342297223" expanded="true" signature="3296:3339" ph="SELECT ID, t... photo" />
+                    <marker date="1529345275721" expanded="true" signature="787:856" ph="SELECT Title... " />
+                    <marker date="1529345275721" expanded="true" signature="1261:1331" ph="INSERT INTO news... " />
+                    <marker date="1529345275721" expanded="true" signature="1586:1622" ph="DELETE FROM news... " />
+                    <marker date="1529345275721" expanded="true" signature="1794:1845" ph="INSERT INTO Albums... " />
+                    <marker date="1529345275721" expanded="true" signature="2014:2043" ph="DELETE FROM Albums... " />
+                    <marker date="1529345275721" expanded="true" signature="2250:2290" ph="SELECT ID, T... Albums" />
+                    <marker date="1529345275721" expanded="true" signature="2640:2695" ph="INSERT INTO photo... " />
+                    <marker date="1529345275721" expanded="true" signature="2863:2891" ph="DELETE FROM photo... " />
+                    <marker date="1529345275721" expanded="true" signature="3049:3086" ph="SELECT img, " />
+                    <marker date="1529345275721" expanded="true" signature="3049:3105" ph="SELECT img, photo" />
+                    <marker date="1529345275721" expanded="true" signature="3300:3338" ph="SELECT ID, T... Albums" />
+                    <marker date="1529345275721" expanded="true" signature="3300:3343" ph="SELECT ID, t... photo" />
                   </folding>
                 </state>
               </provider>
@@ -700,28 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DBfunc.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="132" column="50" lean-forward="false" selection-start-line="132" selection-start-column="50" selection-end-line="132" selection-end-column="50" />
-          <folding>
-            <element signature="e#14#134#0" expanded="true" />
-            <marker date="1529342297223" expanded="true" signature="787:856" ph="SELECT Title... " />
-            <marker date="1529342297223" expanded="true" signature="1261:1331" ph="INSERT INTO news... " />
-            <marker date="1529342297223" expanded="true" signature="1586:1622" ph="DELETE FROM news... " />
-            <marker date="1529342297223" expanded="true" signature="1794:1845" ph="INSERT INTO Albums... " />
-            <marker date="1529342297223" expanded="true" signature="2014:2043" ph="DELETE FROM Albums... " />
-            <marker date="1529342297223" expanded="true" signature="2250:2290" ph="SELECT ID, T... Albums" />
-            <marker date="1529342297223" expanded="true" signature="2640:2695" ph="INSERT INTO photo... " />
-            <marker date="1529342297223" expanded="true" signature="2863:2891" ph="DELETE FROM photo... " />
-            <marker date="1529342297223" expanded="true" signature="3049:3086" ph="SELECT img, " />
-            <marker date="1529342297223" expanded="true" signature="3049:3105" ph="SELECT img, photo" />
-            <marker date="1529342297223" expanded="true" signature="3296:3334" ph="SELECT ID, T... Albums" />
-            <marker date="1529342297223" expanded="true" signature="3296:3339" ph="SELECT ID, t... photo" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cacher.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119">
@@ -741,12 +720,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DBfunc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="134" column="123" lean-forward="false" selection-start-line="134" selection-start-column="123" selection-end-line="134" selection-end-column="123" />
+          <folding>
+            <element signature="e#14#134#0" expanded="true" />
+            <marker date="1529345275721" expanded="true" signature="787:856" ph="SELECT Title... " />
+            <marker date="1529345275721" expanded="true" signature="1261:1331" ph="INSERT INTO news... " />
+            <marker date="1529345275721" expanded="true" signature="1586:1622" ph="DELETE FROM news... " />
+            <marker date="1529345275721" expanded="true" signature="1794:1845" ph="INSERT INTO Albums... " />
+            <marker date="1529345275721" expanded="true" signature="2014:2043" ph="DELETE FROM Albums... " />
+            <marker date="1529345275721" expanded="true" signature="2250:2290" ph="SELECT ID, T... Albums" />
+            <marker date="1529345275721" expanded="true" signature="2640:2695" ph="INSERT INTO photo... " />
+            <marker date="1529345275721" expanded="true" signature="2863:2891" ph="DELETE FROM photo... " />
+            <marker date="1529345275721" expanded="true" signature="3049:3086" ph="SELECT img, " />
+            <marker date="1529345275721" expanded="true" signature="3049:3105" ph="SELECT img, photo" />
+            <marker date="1529345275721" expanded="true" signature="3300:3338" ph="SELECT ID, T... Albums" />
+            <marker date="1529345275721" expanded="true" signature="3300:3343" ph="SELECT ID, t... photo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state relative-caret-position="322">
+          <caret line="302" column="8" lean-forward="false" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="8" />
           <folding>
-            <marker date="1529344967300" expanded="true" signature="14202:14220" ph="SELECT * FRO... news" />
+            <element signature="e#49#217#0" expanded="true" />
+            <marker date="1529346070534" expanded="true" signature="14870:14888" ph="SELECT * FRO... news" />
           </folding>
         </state>
       </provider>

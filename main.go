@@ -13,6 +13,7 @@ import (
 
 	"strconv"
 	"log"
+	"os"
 )
 
 
@@ -280,14 +281,34 @@ func main() {
 		http.Redirect(w, r, "/AdminPanel/Albums", http.StatusSeeOther)
 	})
 	router.GET("/AdminPanel/Album/:id/delete",func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		//checkLogin(w,r)
-		i,_:=strconv.Atoi(ps.ByName("id"))
-		err = deleteAlbumFromDB(db, i)
+		checkLogin(w,r)
+		id,err:=strconv.Atoi(ps.ByName("id"))
+
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "id not int", 500)
+			return
+		}
+		album,err := getAlbumById(id)
+		if err!= nil {
+			log.Println(err)
+			return
+		}
+		err = deleteAlbumFromDB(db, id)
 		if err!= nil {
 			log.Println(err)
 			http.Error(w, "error delete album", 500)
 			return
 		}
+		
+		for _, k := range album.Img{
+			err = os.Remove("." + k.Img)
+			if err!= nil{
+				log.Println(err)
+				return
+			}
+		}
+
 		fmt.Println("album delete")
 		refreshCache(db)
 		http.Redirect(w, r, "/AdminPanel/Albums", http.StatusSeeOther)
@@ -339,8 +360,25 @@ func main() {
 	})
 
 	router.GET("/AdminPanel/deletePhoto/:idImg/:idAlbum", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		idImg,_:= strconv.Atoi(ps.ByName("idImg"))
-		deletePhotoFromDB(db, idImg)
+		idImg,err:= strconv.Atoi(ps.ByName("idImg"))
+		photo := getPhotoFromDBByID(db, idImg)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "id not int", 500)
+			return
+		}
+		err = deletePhotoFromDB(db, idImg)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "error delete img from db", 500)
+			return
+		}
+		os.Remove("." + photo.Img)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "error delete img file", 500)
+			return
+		}
 		refreshCache(db)
 		http.Redirect(w, r, "/AdminPanel/Albums/"+ps.ByName("idAlbum"), http.StatusSeeOther)
 	})

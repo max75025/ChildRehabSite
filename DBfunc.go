@@ -132,7 +132,7 @@ func deletePhotoFromDB(db *sql.DB,id int) error{
 
 func getPhotoFromDBByID(db *sql.DB, id int )(Photo){
 	var photo Photo
-	 db.QueryRow("SELECT ID, Title, path, id_album FROM photo WHERE id = ?", id).Scan(photo.ID,photo.Title, photo.Img, photo.IDAlbum )
+	 db.QueryRow("SELECT ID, Title, path, id_album FROM photo WHERE id = ?", id).Scan(&photo.ID,&photo.Title, &photo.Img, &photo.IDAlbum )
 	 return photo
 }
 
