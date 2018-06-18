@@ -8,29 +8,46 @@ import (
 	"strconv"
 
 	"fmt"
+	"log"
 )
 
 
 var cachedAlbums 	[]PhotoAlbum
 var cachedNews 		[]News
 
-func autoRefreshCache(db *sql.DB){
+func autoRefreshCache(db *sql.DB) {
 	for  range time.Tick(30 *time.Second){
 		fmt.Println("autorefresh cache...")
-		refreshCache(db)
+		err := refreshCache(db)
+		if err!= nil{
+			log.Println(err)
+
+		}
 	}
 }
 
-func refreshCache(db *sql.DB){
-	cacheAlbums(db)
-	cacheNews(db)
+func refreshCache(db *sql.DB) error{
+	err:= cacheAlbums(db)
+	if err!= nil{
+		return err
+	}
+	err = cacheNews(db)
+	if err!= nil{
+		return err
+	}
+	return nil
 }
 
 
-func cacheAlbums(db *sql.DB)  {
-	 Albums := getAlbumsFromDB(db)
-	allPhotos:=getPhotosFromDB(db)
-
+func cacheAlbums(db *sql.DB) error {
+	 Albums, err := getAlbumsFromDB(db)
+	if err!= nil{
+		return err
+	}
+	allPhotos , err:=getPhotosFromDB(db)
+	if err!= nil{
+		return err
+	}
 
 	for i,k:= range Albums {
 		var photosForAlbum []Photo
@@ -50,20 +67,25 @@ func cacheAlbums(db *sql.DB)  {
 
 	}
 	cachedAlbums = Albums
+	return nil
 }
 
-func cacheNews(db *sql.DB){
+func cacheNews(db *sql.DB) error{
 	var allNews []News
 	var rows *sql.Rows
 	var err error
 
 		rows, err = db.Query("SELECT Title, Body, Img, Date, News_link FROM news ORDER BY Date DESC")
 
-	checkErr(err)
+	if err!= nil{
+		return err
+	}
 	var news News
 	for rows.Next() {
 		err = rows.Scan(&news.Title, &news.Body, &news.Img, &news.Date, &news.NewsLink)
-		checkErr(err)
+		if err!= nil{
+			return err
+		}
 		i,_:=strconv.ParseInt(news.Date, 10, 64)
 		t:=time.Unix(i,0)
 		convTime:= t.Format("02.01.2006")
@@ -72,6 +94,7 @@ func cacheNews(db *sql.DB){
 	}
 	rows.Close()
 	cachedNews = allNews
+	return nil
 }
 
 func getAlbumById(id int)(PhotoAlbum,error){
@@ -80,7 +103,7 @@ func getAlbumById(id int)(PhotoAlbum,error){
 			return k,nil
 		}
 	}
-	return PhotoAlbum{},errors.New("not found")
+	return PhotoAlbum{},errors.New("not found album in cache")
 }
 
 
@@ -91,34 +114,10 @@ func getNewsByUrl(link string) (News,error){
 		}
 	}
 
-	return News{},errors.New("not found")
+	return News{},errors.New("not found news by id")
 }
 
 
 
-/*func testInputPhotoToDB(db *sql.DB){
-	stmt, err := db.Prepare("INSERT INTO photo(path,title) VALUES (?,?)")
-	checkErr(err)
 
-	ex, err := stmt.Exec("test","test")
-	checkErr(err)
-	fmt.Println("add test photo")
-	fmt.Println(ex)
-}*/
-
-/*func testInputJsonToDB(db *sql.DB){
-	stmt, err := db.Prepare("INSERT INTO json_object(json, type) VALUES (?,?)")
-	checkErr(err)
-
-	album:= PhotoAlbum{
-		Img:         []string{"test","test", "test"},
-		Title:       "test",
-		Description: "test",
-	}
-	jsonStr,err:=json.Marshal(album)
-	checkErr(err)
-	_, err = stmt.Exec(jsonStr,"album")
-	checkErr(err)
-	fmt.Println("add test json album")
-}*/
 

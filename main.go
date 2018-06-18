@@ -9,18 +9,19 @@ import (
 	"github.com/julienschmidt/httprouter"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
-	"encoding/json"
+
 
 	"strconv"
+	"log"
 )
 
 
-func checkErr(err error,) {
+/*func checkErr(err error,) {
 	if err != nil {
 		panic(err)
 
 	}
-}
+}*/
 
 func checkSiteErr(err error, w http.ResponseWriter) {
 	if err != nil {
@@ -33,7 +34,10 @@ func checkSiteErr(err error, w http.ResponseWriter) {
 
 func main() {
 	db, err:= sql.Open("sqlite3", "./database/db.db")
-	checkErr(err)
+	if err!= nil{
+		log.Println(err)
+		return
+	}
 	router := httprouter.New()
 
 	//Serve static
@@ -87,10 +91,16 @@ func main() {
 	router.GET("/albums/:id", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 		id,err:=strconv.Atoi(ps.ByName("id"))
-		checkErr(err)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "id not int", 500)
+			return
+		}
 		album,err:= getAlbumById(id)
-		if(err!=nil){
-			http.Redirect(w,r,"/404", http.StatusSeeOther)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "not found album by id", 500)
+			return
 		}
 
 		tmpl:= template.Must(template.ParseFiles("tmpls/photos.html"))
@@ -192,32 +202,34 @@ func main() {
 
 	router.GET("/AdminPanel/news", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		news:= new(NewsDataModel)
-		news.AllNews = getNewsFromDB(0, db)
+		news.AllNews = cachedNews
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/news.html"))
 		tmpl.Execute(w,news)
 	})
 	router.GET("/AdminPanel/addNews", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		//checkLogin(w,r)
+		checkLogin(w,r)
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/addNews.html"))
 		tmpl.Execute(w,nil)
 		//fmt.Println(time.Now().Unix())
 	})
 
 	router.POST("/AdminPanel/addNews", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		//checkLogin(w,r)
+		checkLogin(w,r)
 
 		r.ParseForm()
 		imgPath:= ""
 		r.ParseMultipartForm(32 << 20)
 		file, handler, err := r.FormFile("img")
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
+			return
 		}
 		imgPath = upload(file, handler.Filename, "/newsImgs/")
 
 		err = addNewsToDB(db, imgPath, r.Form["title"][0],r.Form["body"][0] )
 		if err!=nil {
 			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+			return
 		}
 		fmt.Println("news add")
 		refreshCache(db)
@@ -227,17 +239,22 @@ func main() {
 	})
 
 	router.GET("/AdminPanel/deleteNews/:link", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		//checkLogin(w,r)
+		checkLogin(w,r)
 		_, err:= db.Exec("Delete FROM news WHERE News_link = '" + ps.ByName("link") + "'")
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "error delete news", 500)
+			return
+		}
 		refreshCache(db)
 		http.Redirect(w, r, "/AdminPanel/news", http.StatusSeeOther)
-		checkErr(err)
+
 
 	})
 
 
 	router.GET("/AdminPanel/Albums", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		//checkLogin(w,r)
+		checkLogin(w,r)
 		albums := cachedAlbums
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/PhotoAlbums.html"))
 		tmpl.Execute(w,albums)
@@ -250,12 +267,13 @@ func main() {
 		tmpl.Execute(w,nil)
 	})
 	router.POST("/AdminPanel/Albums/add", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		//checkLogin(w,r)
+		checkLogin(w,r)
 		r.ParseForm()
 		//err = addAlbumToDB(db, "test","test" )
 		err = addAlbumToDB(db, r.Form["title"][0],r.Form["description"][0] )
 		if err!=nil {
 			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+			return
 		}
 		fmt.Println("album add")
 		refreshCache(db)
@@ -265,7 +283,11 @@ func main() {
 		//checkLogin(w,r)
 		i,_:=strconv.Atoi(ps.ByName("id"))
 		err = deleteAlbumFromDB(db, i)
-		checkErr(err)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "error delete album", 500)
+			return
+		}
 		fmt.Println("album delete")
 		refreshCache(db)
 		http.Redirect(w, r, "/AdminPanel/Albums", http.StatusSeeOther)
@@ -274,10 +296,16 @@ func main() {
 	router.GET("/AdminPanel/Albums/:id", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 		id,err:=strconv.Atoi(ps.ByName("id"))
-		checkErr(err)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "id not int", 500)
+			return
+		}
         album,err:= getAlbumById(id)
-        if(err!=nil){
-        	http.Redirect(w,r,"/404", http.StatusSeeOther)
+		if err!= nil {
+			log.Println(err)
+			http.Error(w, "not found album by id", 500)
+			return
 		}
 
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/photos.html"))
@@ -296,12 +324,14 @@ func main() {
 		r.ParseMultipartForm(32 << 20)
 		file, handler, err := r.FormFile("img")
 		if err != nil {
-			fmt.Println(err)
+			log.Println(err)
+			return
 		}
 		imgPath = upload(file, handler.Filename, "/photo/")
 		err = addPhotoFromDB(db,r.Form["title"][0],imgPath, ps.ByName("id"))
 		if err!=nil {
 			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+			return
 		}
 		fmt.Println("add photo")
 		refreshCache(db)
@@ -322,7 +352,7 @@ func main() {
 
 
 	/*some test */
-	router.GET("/db", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	/*router.GET("/db", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		rows, err:= db.Query("SELECT * FROM news")
 		checkErr(err)
 		var id int
@@ -342,10 +372,10 @@ func main() {
 			fmt.Fprintf(w,"%s\n",link)
 			fmt.Fprintf(w,"%s\n",date)
 		}
-	})
+	})*/
 
 
-	router.GET("/socialJson", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	/*router.GET("/socialJson", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		testLink:= SocialLinks{
 			Facebook: "fb.com",
 			Twitter:  "twitter.com",
@@ -360,7 +390,7 @@ func main() {
 		fmt.Fprintf(w,"%s\n",testLink)
 		fmt.Fprintf(w,"%s\n",testJson)
 		fmt.Fprintf(w,"%s\n",testDecodeJson)
-	})
+	})*/
 
 
 
