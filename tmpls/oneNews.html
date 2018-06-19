@@ -66,8 +66,7 @@
             <div class="col-10 m-auto ">
                 {{range .AllNews}}
                     <div v-for="post in posts">
-                        <p class="text-left p-5">
-                            <p class="styleFontNewsDate">{{.Date}}</p>
+                            <p class="styleFontNewsDate mt-5">{{.Date}}</p>
                             <div class="text-center">
                                 <h3 id="news" class="styleFontHeadNews text-uppercase my-2">{{ .Title }}</h3>
                                 <img class=" my-3 img-fluid " src="{{.Img}}">

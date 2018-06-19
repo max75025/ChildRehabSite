@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+
 	"os"
 	"io"
 	"database/sql"
@@ -10,6 +10,7 @@ import (
 	"github.com/essentialkaos/translit"
 	"mime/multipart"
 
+	"log"
 )
 
 
@@ -20,7 +21,7 @@ func upload(file multipart.File, filename string,  path string ) string {
 	//fmt.Fprintf(w, "%v", handler.Header)
 	f, err := os.OpenFile("."+path+filename, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return ""
 	}
 	defer f.Close()
@@ -64,6 +65,21 @@ func addNewsToDB(db *sql.DB, imgPath string, title string, body string ) error {
 	str:= translit.EncodeToICAO(title)
 	url := strings.Replace(str," ","-", -1)
 	_, err = stmt.Exec(title, body, imgPath, int(t), url)
+	return err
+}
+
+func updateNewsFromDB(db *sql.DB, imgPath string, title string, body string, currentLink string ) error {
+	var err error
+	if imgPath == ""{
+		q, err := db.Prepare("UPDATE  news SET Title = ? , Body = ?  WHERE News_link=?  " )
+		if err!=nil{ return  err}
+		_,err = q.Exec(title, body,  currentLink)
+	}else{
+		q, err := db.Prepare("UPDATE  news SET Title = ? , Body = ? , Img = ? WHERE News_link=?" )
+		if err!=nil{ return  err}
+		_, err = q.Exec(title, body, imgPath,  currentLink)
+
+	}
 	return err
 }
 

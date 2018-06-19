@@ -13,77 +13,57 @@
     <splitter split-orientation="horizontal" split-proportion="0.76801056">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="photos.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tmpls/photos.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="544">
-                  <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.go" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/main.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="322">
-                  <caret line="302" column="8" lean-forward="false" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="8" />
+                <state relative-caret-position="4573">
+                  <caret line="269" column="47" lean-forward="false" selection-start-line="269" selection-start-column="47" selection-end-line="269" selection-end-column="47" />
                   <folding>
                     <element signature="e#49#217#0" expanded="true" />
-                    <marker date="1529346070534" expanded="true" signature="14870:14888" ph="SELECT * FRO... news" />
+                    <marker date="1529413899242" expanded="true" signature="16205:16223" ph="SELECT * FRO... news" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="session.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/session.go">
+          <file leaf-file-name="editNews.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/editNews.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-                  <folding>
-                    <element signature="e#14#71#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tmpls/index.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="884">
-                  <caret line="52" column="8" lean-forward="false" selection-start-line="39" selection-start-column="2" selection-end-line="52" selection-end-column="8" />
+                <state relative-caret-position="237">
+                  <caret line="90" column="101" lean-forward="false" selection-start-line="90" selection-start-column="101" selection-end-line="90" selection-end-column="101" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tmpls/login.html">
+          <file leaf-file-name="photos.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/photos.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1530">
-                  <caret line="90" column="45" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+                <state relative-caret-position="450">
+                  <caret line="54" column="88" lean-forward="false" selection-start-line="54" selection-start-column="88" selection-end-line="54" selection-end-column="88" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
           <file leaf-file-name="news.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tmpls/news.html">
+            <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/news.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1105">
-                  <caret line="65" column="36" lean-forward="false" selection-start-line="65" selection-start-column="36" selection-end-line="65" selection-end-column="36" />
+                <state relative-caret-position="153">
+                  <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="oneNews.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/tmpls/oneNews.html">
+          <file leaf-file-name="PhotoAlbums.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/PhotoAlbums.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1258">
-                  <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
-                  <folding />
+                <state relative-caret-position="325">
+                  <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -91,7 +71,7 @@
           <file leaf-file-name="cacher.go" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/cacher.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-119">
+                <state relative-caret-position="289">
                   <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
                   <folding>
                     <element signature="e#14#85#0" expanded="true" />
@@ -101,36 +81,39 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DBfunc.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/DBfunc.go">
+          <file leaf-file-name="oneNews.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/tmpls/oneNews.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="423">
-                  <caret line="134" column="123" lean-forward="false" selection-start-line="134" selection-start-column="123" selection-end-line="134" selection-end-column="123" />
-                  <folding>
-                    <element signature="e#14#134#0" expanded="true" />
-                    <marker date="1529345275721" expanded="true" signature="787:856" ph="SELECT Title... " />
-                    <marker date="1529345275721" expanded="true" signature="1261:1331" ph="INSERT INTO news... " />
-                    <marker date="1529345275721" expanded="true" signature="1586:1622" ph="DELETE FROM news... " />
-                    <marker date="1529345275721" expanded="true" signature="1794:1845" ph="INSERT INTO Albums... " />
-                    <marker date="1529345275721" expanded="true" signature="2014:2043" ph="DELETE FROM Albums... " />
-                    <marker date="1529345275721" expanded="true" signature="2250:2290" ph="SELECT ID, T... Albums" />
-                    <marker date="1529345275721" expanded="true" signature="2640:2695" ph="INSERT INTO photo... " />
-                    <marker date="1529345275721" expanded="true" signature="2863:2891" ph="DELETE FROM photo... " />
-                    <marker date="1529345275721" expanded="true" signature="3049:3086" ph="SELECT img, " />
-                    <marker date="1529345275721" expanded="true" signature="3049:3105" ph="SELECT img, photo" />
-                    <marker date="1529345275721" expanded="true" signature="3300:3338" ph="SELECT ID, T... Albums" />
-                    <marker date="1529345275721" expanded="true" signature="3300:3343" ph="SELECT ID, t... photo" />
-                  </folding>
+                <state relative-caret-position="362">
+                  <caret line="68" column="60" lean-forward="false" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="60" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.go" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models.go">
+          <file leaf-file-name="DBfunc.go" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/DBfunc.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="35" column="22" lean-forward="false" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-                  <folding />
+                <state relative-caret-position="340">
+                  <caret line="77" column="95" lean-forward="false" selection-start-line="77" selection-start-column="95" selection-end-line="77" selection-end-column="95" />
+                  <folding>
+                    <element signature="e#14#135#0" expanded="true" />
+                    <marker date="1529408250807" expanded="true" signature="788:857" ph="SELECT Title... " />
+                    <marker date="1529408250807" expanded="true" signature="1262:1332" ph="INSERT INTO news... " />
+                    <marker date="1529408250807" expanded="true" signature="1669:1725" ph="UPDATE news " />
+                    <marker date="1529408250807" expanded="true" signature="1669:1726" ph="UPDATE news " />
+                    <marker date="1529408250807" expanded="true" signature="1835:1900" ph="UPDATE news " />
+                    <marker date="1529408250807" expanded="true" signature="2087:2123" ph="DELETE FROM news... " />
+                    <marker date="1529408250807" expanded="true" signature="2295:2346" ph="INSERT INTO Albums... " />
+                    <marker date="1529408250807" expanded="true" signature="2515:2544" ph="DELETE FROM Albums... " />
+                    <marker date="1529408250807" expanded="true" signature="2751:2791" ph="SELECT ID, T... Albums" />
+                    <marker date="1529408250807" expanded="true" signature="3141:3196" ph="INSERT INTO photo... " />
+                    <marker date="1529408250807" expanded="true" signature="3364:3392" ph="DELETE FROM photo... " />
+                    <marker date="1529408250807" expanded="true" signature="3550:3587" ph="SELECT img, " />
+                    <marker date="1529408250807" expanded="true" signature="3550:3606" ph="SELECT img, photo" />
+                    <marker date="1529408250807" expanded="true" signature="3801:3839" ph="SELECT ID, T... Albums" />
+                    <marker date="1529408250807" expanded="true" signature="3801:3844" ph="SELECT ID, t... photo" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -142,7 +125,7 @@
           <file leaf-file-name="models.go" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/models.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="187">
+                <state relative-caret-position="391">
                   <caret line="35" column="22" lean-forward="false" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
                   <folding />
                 </state>
@@ -192,9 +175,7 @@
         <option value="C:/Go/src/database/sql/sql.go" />
         <option value="$PROJECT_DIR$/tmpls/AdminPanel/deletePhoto.html" />
         <option value="$PROJECT_DIR$/static/square-img.css" />
-        <option value="$PROJECT_DIR$/tmpls/AdminPanel/photos.html" />
         <option value="$PROJECT_DIR$/tmpls/AdminPanel/AdminPanel.html" />
-        <option value="$PROJECT_DIR$/tmpls/AdminPanel/PhotoAlbums.html" />
         <option value="$PROJECT_DIR$/tmpls/contacts.html" />
         <option value="$PROJECT_DIR$/tmpls/doc.html" />
         <option value="$PROJECT_DIR$/tmpls/documents.html" />
@@ -204,16 +185,19 @@
         <option value="$PROJECT_DIR$/tmpls/Albums.html" />
         <option value="$PROJECT_DIR$/tmpls/history.html" />
         <option value="$PROJECT_DIR$/tmpls/team.html" />
-        <option value="$PROJECT_DIR$/tmpls/AdminPanel/news.html" />
-        <option value="$PROJECT_DIR$/tmpls/oneNews.html" />
         <option value="$PROJECT_DIR$/tmpls/AdminPanel/addNews.html" />
         <option value="$PROJECT_DIR$/tmpls/AdminPanel/addAlbums.html" />
         <option value="$PROJECT_DIR$/tmpls/AdminPanel/addPhoto.html" />
         <option value="$PROJECT_DIR$/tmpls/login.html" />
         <option value="$PROJECT_DIR$/tmpls/news.html" />
         <option value="$PROJECT_DIR$/cacher.go" />
+        <option value="$PROJECT_DIR$/tmpls/AdminPanel/editNews.html" />
         <option value="$PROJECT_DIR$/DBfunc.go" />
+        <option value="$PROJECT_DIR$/tmpls/oneNews.html" />
         <option value="$PROJECT_DIR$/main.go" />
+        <option value="$PROJECT_DIR$/tmpls/AdminPanel/photos.html" />
+        <option value="$PROJECT_DIR$/tmpls/AdminPanel/news.html" />
+        <option value="$PROJECT_DIR$/tmpls/AdminPanel/PhotoAlbums.html" />
       </list>
     </option>
   </component>
@@ -224,7 +208,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-7" />
+    <option name="x" value="833" />
     <option name="width" value="854" />
     <option name="height" value="1017" />
   </component>
@@ -361,7 +345,7 @@
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09940476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13511905" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -393,14 +377,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="22" lean-forward="true" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -609,42 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/photos.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/PhotoAlbums.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-596">
-          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="29" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tmpls/oneNews.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="30" lean-forward="false" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/news.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="8" column="215" lean-forward="false" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="215" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/addNews.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="97" column="118" lean-forward="false" selection-start-line="97" selection-start-column="118" selection-end-line="97" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/addAlbums.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
@@ -688,22 +628,55 @@
         <state relative-caret-position="289">
           <caret line="17" column="5" lean-forward="false" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
-            <element signature="e#14#71#0" expanded="true" />
+            <element signature="e#14#71#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
+        <state relative-caret-position="391">
           <caret line="35" column="22" lean-forward="false" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DBfunc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="77" column="95" lean-forward="false" selection-start-line="77" selection-start-column="95" selection-end-line="77" selection-end-column="95" />
+          <folding>
+            <element signature="e#14#135#0" expanded="true" />
+            <marker date="1529408250807" expanded="true" signature="788:857" ph="SELECT Title... " />
+            <marker date="1529408250807" expanded="true" signature="1262:1332" ph="INSERT INTO news... " />
+            <marker date="1529408250807" expanded="true" signature="1669:1725" ph="UPDATE news " />
+            <marker date="1529408250807" expanded="true" signature="1669:1726" ph="UPDATE news " />
+            <marker date="1529408250807" expanded="true" signature="1835:1900" ph="UPDATE news " />
+            <marker date="1529408250807" expanded="true" signature="2087:2123" ph="DELETE FROM news... " />
+            <marker date="1529408250807" expanded="true" signature="2295:2346" ph="INSERT INTO Albums... " />
+            <marker date="1529408250807" expanded="true" signature="2515:2544" ph="DELETE FROM Albums... " />
+            <marker date="1529408250807" expanded="true" signature="2751:2791" ph="SELECT ID, T... Albums" />
+            <marker date="1529408250807" expanded="true" signature="3141:3196" ph="INSERT INTO photo... " />
+            <marker date="1529408250807" expanded="true" signature="3364:3392" ph="DELETE FROM photo... " />
+            <marker date="1529408250807" expanded="true" signature="3550:3587" ph="SELECT img, " />
+            <marker date="1529408250807" expanded="true" signature="3550:3606" ph="SELECT img, photo" />
+            <marker date="1529408250807" expanded="true" signature="3801:3839" ph="SELECT ID, T... Albums" />
+            <marker date="1529408250807" expanded="true" signature="3801:3844" ph="SELECT ID, t... photo" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmpls/oneNews.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="68" column="60" lean-forward="false" selection-start-line="68" selection-start-column="60" selection-end-line="68" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cacher.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
+        <state relative-caret-position="289">
           <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
           <folding>
             <element signature="e#14#85#0" expanded="true" />
@@ -712,43 +685,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4573">
+          <caret line="269" column="47" lean-forward="false" selection-start-line="269" selection-start-column="47" selection-end-line="269" selection-end-column="47" />
+          <folding>
+            <element signature="e#49#217#0" expanded="true" />
+            <marker date="1529413899242" expanded="true" signature="16205:16223" ph="SELECT * FRO... news" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/addNews.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tmpls/photos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="187">
           <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DBfunc.go">
+    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/editNews.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="134" column="123" lean-forward="false" selection-start-line="134" selection-start-column="123" selection-end-line="134" selection-end-column="123" />
-          <folding>
-            <element signature="e#14#134#0" expanded="true" />
-            <marker date="1529345275721" expanded="true" signature="787:856" ph="SELECT Title... " />
-            <marker date="1529345275721" expanded="true" signature="1261:1331" ph="INSERT INTO news... " />
-            <marker date="1529345275721" expanded="true" signature="1586:1622" ph="DELETE FROM news... " />
-            <marker date="1529345275721" expanded="true" signature="1794:1845" ph="INSERT INTO Albums... " />
-            <marker date="1529345275721" expanded="true" signature="2014:2043" ph="DELETE FROM Albums... " />
-            <marker date="1529345275721" expanded="true" signature="2250:2290" ph="SELECT ID, T... Albums" />
-            <marker date="1529345275721" expanded="true" signature="2640:2695" ph="INSERT INTO photo... " />
-            <marker date="1529345275721" expanded="true" signature="2863:2891" ph="DELETE FROM photo... " />
-            <marker date="1529345275721" expanded="true" signature="3049:3086" ph="SELECT img, " />
-            <marker date="1529345275721" expanded="true" signature="3049:3105" ph="SELECT img, photo" />
-            <marker date="1529345275721" expanded="true" signature="3300:3338" ph="SELECT ID, T... Albums" />
-            <marker date="1529345275721" expanded="true" signature="3300:3343" ph="SELECT ID, t... photo" />
-          </folding>
+        <state relative-caret-position="237">
+          <caret line="90" column="101" lean-forward="false" selection-start-line="90" selection-start-column="101" selection-end-line="90" selection-end-column="101" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
+    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/photos.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="302" column="8" lean-forward="false" selection-start-line="302" selection-start-column="8" selection-end-line="302" selection-end-column="8" />
+        <state relative-caret-position="450">
+          <caret line="54" column="88" lean-forward="false" selection-start-line="54" selection-start-column="88" selection-end-line="54" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/news.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmpls/AdminPanel/PhotoAlbums.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
           <folding>
-            <element signature="e#49#217#0" expanded="true" />
-            <marker date="1529346070534" expanded="true" signature="14870:14888" ph="SELECT * FRO... news" />
+            <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

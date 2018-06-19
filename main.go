@@ -185,7 +185,7 @@ func main() {
 		if name != "" && pass != "" && checkLoginData(name, pass) {
 			// .. check credentials ..
 			setSession(name, w)
-			redirectTarget = "/AdminPanel"
+			redirectTarget = "/AdminPanel/news"
 		}
 		http.Redirect(w, r, redirectTarget, 302)
 	} )
@@ -197,11 +197,13 @@ func main() {
 	router.GET("/AdminPanel" ,func(w http.ResponseWriter, r *http.Request, ps httprouter.Params){
 		checkLogin(w, r)
 		//fmt.Fprintf(w,"hello %s", getUserName(r))
-		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/AdminPanel.html"))
-		tmpl.Execute(w,nil)
+		//tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/AdminPanel.html"))
+		//tmpl.Execute(w,nil)
+		http.Redirect(w,r,"/AdminPanel/news", 302)
 	})
 
 	router.GET("/AdminPanel/news", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		checkLogin(w,r)
 		news:= new(NewsDataModel)
 		news.AllNews = cachedNews
 		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/news.html"))
@@ -223,10 +225,8 @@ func main() {
 		file, handler, err := r.FormFile("img")
 		if err != nil {
 			log.Println(err)
-			return
 		}
 		imgPath = upload(file, handler.Filename, "/newsImgs/")
-
 		err = addNewsToDB(db, imgPath, r.Form["title"][0],r.Form["body"][0] )
 		if err!=nil {
 			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
@@ -236,6 +236,53 @@ func main() {
 		refreshCache(db)
 		http.Redirect(w, r, "/AdminPanel/news", http.StatusSeeOther)
 		//fmt.Println(time.Unix(t,0).Format("02.01.2006"))
+
+	})
+
+	router.GET("/AdminPanel/editNews/:link", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		checkLogin(w,r)
+
+		news,err := getNewsByUrl(ps.ByName("link"))
+		if err!= nil {
+			log.Println(err)
+			http.Error(w,"error find news by link", 500)
+			return
+		}
+		tmpl:= template.Must(template.ParseFiles("tmpls/AdminPanel/editNews.html"))
+		tmpl.Execute(w,news)
+
+	})
+
+	router.POST("/AdminPanel/editNews/:link", func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+		checkLogin(w,r)
+		r.ParseForm()
+		news,err:= getNewsByUrl(ps.ByName("link"))
+		if err!=nil{
+			log.Println(err)
+			http.Error(w, "error find news with this link", 500)
+			return
+		}
+		r.ParseMultipartForm(32 << 20)
+		file, handler, err := r.FormFile("img")
+		if err != nil {
+			log.Println(err)
+		}
+		imgPath := upload(file, handler.Filename, "/newsImgs/")
+		if imgPath!=""{
+			os.Remove("."+news.Img)
+			if err!=nil{
+				log.Println(err)
+			}
+		}
+		err = updateNewsFromDB(db, imgPath, r.Form["title"][0],r.Form["body"][0], ps.ByName("link") )
+		if err!=nil {
+			log.Println(err)
+			fmt.Fprintf(w, "введены некоректные или ранее используемые данные")
+			return
+		}
+		refreshCache(db)
+		fmt.Println("news edit")
+		http.Redirect(w, r, "/AdminPanel/news", http.StatusSeeOther)
 
 	})
 
@@ -300,7 +347,7 @@ func main() {
 			http.Error(w, "error delete album", 500)
 			return
 		}
-		
+
 		for _, k := range album.Img{
 			err = os.Remove("." + k.Img)
 			if err!= nil{
@@ -457,6 +504,9 @@ func main() {
 	db.Close()
 
 }
+
+
+
 
 
 

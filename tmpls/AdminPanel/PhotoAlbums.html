@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Фото альбомы</title>
     <link rel="stylesheet" href="/static/main.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <style>
         .img-box{
             height:200px;
@@ -25,7 +26,10 @@
             z-index: 2;
             top: 2px;
             right:20px;
-            color: red;
+
+        }
+        .container-img-box a ,.container-img-box a:hover, .container-img-box a:focus, .container-img-box a:active{
+            color:black;
         }
     </style>
 </head>
@@ -34,9 +38,7 @@
     <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="  collapse navbar-collapse text-center justify-content-center  " id="navbar2SupportedContent">
         <ul class="navbar-nav ">
-            <li class="nav-item ">
-                <a class="nav-link" href="/AdminPanel">главная</a>
-            </li>
+
             <li class="nav-item ">
                 <a class="nav-link" href="/AdminPanel/news">Новости</a>
             </li>
@@ -62,7 +64,7 @@
         {{end}}
             <div class="container-img-box col-lg-3 col-md-6 col-sm-12  m-auto">
                 <a href="/AdminPanel/addAlbums">
-                    <div class="img-box" style=" background-image:url('http://placehold.it/400x300');">
+                    <div class="img-box" style=" background-image:url(/static/photoAlbum.png);  background-size:200px 200px;">
                      </div>
                 <h3 class="mt-3">добавить</h3></a>
             </div>
